@@ -43,7 +43,7 @@ public class FoorumiServlet extends HttpServlet {
             // haetaan tietokannasta kategorioiden nimet
             ArrayList<String> nimet = new ArrayList<>();
             try (Connection yhteys = dataSource.getConnection()) {
-                String sql = "select nimi, id from kategoria";
+                String sql = "select nimi from kategoria";
                 PreparedStatement ps = yhteys.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
