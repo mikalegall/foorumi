@@ -1,3 +1,5 @@
+import luokat.Viesti;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +35,23 @@ public class FoorumiServlet extends HttpServlet {
 
             String keskustelu = request.getParameter("keskustelu");
             if (keskustelu != null) {
-                writer.println("uudelleenohjaus kategoriaan " + kategoria + " keskusteluun " + keskustelu);
+                ArrayList<Viesti> viestit = new ArrayList<>();
+                String keskusteluNimi = "";
+                try (Connection yhteys = dataSource.getConnection()) {
+                    String sql = "select teksti from viesti";
+                    PreparedStatement ps = yhteys.prepareStatement(sql);
+                    ResultSet resultSet = ps.executeQuery();
+                    while (resultSet.next()) {
+                        Viesti v = new Viesti();
+                        v.setTeksti(resultSet.getString("teksti"));
+                        viestit.add(v);
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                request.setAttribute("viestit", viestit);
+                request.getRequestDispatcher("keskustelu.jsp").forward(request, response);
             } else {
                 writer.println("uudelleenohjaus kategoriaan " + kategoria);
             }
@@ -57,6 +75,17 @@ public class FoorumiServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
+    }
+
+    private ResultSet query(String sql) {
+        ResultSet resultSet = null;
+        try (Connection yhteys = dataSource.getConnection()) {
+            PreparedStatement ps = yhteys.prepareStatement(sql);
+            resultSet = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 
 
