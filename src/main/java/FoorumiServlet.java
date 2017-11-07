@@ -53,7 +53,22 @@ public class FoorumiServlet extends HttpServlet {
                 request.setAttribute("viestit", viestit);
                 request.getRequestDispatcher("keskustelu.jsp").forward(request, response);
             } else {
-                writer.println("uudelleenohjaus kategoriaan " + kategoria);
+                //haetaan tietokannasta keskustelujen otsikot
+                ArrayList<String> keskustelut = new ArrayList<>();
+                try (Connection yhteys = dataSource.getConnection()) {
+                    String sql = "select * from keskustelu join kategoria on kategoria.id=keskustelu.kategoria and kategoria.nimi=?";
+                    PreparedStatement ps = yhteys.prepareStatement(sql);
+                    ps.setString(1, kategoria);
+                    ResultSet tulos = ps.executeQuery();
+                    while (tulos.next()) {
+                        keskustelut.add(tulos.getString("otsikko"));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                request.setAttribute("kategoria", kategoria);
+                request.setAttribute("keskusteluotsikot", keskustelut);
+                request.getRequestDispatcher("kategoriat.jsp").forward(request, response);
             }
 
             writer.close();

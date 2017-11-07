@@ -30,7 +30,7 @@ public class DatabaseTestServlet extends HttpServlet {
             ResultSet rs = lause.executeQuery("select * from kayttaja");
             writer.println("Taulun kayttaja nimet:<br>");
             while (rs.next()) {
-                writer.println(rs.getString("nimi") + "<br>");
+                writer.println(rs.getString("kayttajatunnus") + "<br>");
             }
         } catch (SQLException e) {
             e.printStackTrace();
