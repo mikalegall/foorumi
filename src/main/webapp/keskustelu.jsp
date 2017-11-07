@@ -25,10 +25,16 @@
         for (Viesti viesti : viestit) {
             out.println("<div class='viesti'>");
             out.println(viesti.getKirjoittaja() + ": " + viesti.getTeksti());
-            out.println("</div>")
+            out.println("</div>");
         }
     %>
 
+</div>
+<div class="kirjoita">
+    <form method="post" action="/Kirjoita">
+        <textarea rows="50" cols="50">Kirjoita kommentti tähän</textarea><br>
+        <input type="submit" value="Lähetä">
+    </form>
 </div>
 </body>
 </html>
