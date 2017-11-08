@@ -60,7 +60,7 @@ public class KeskusteluServlet extends HttpServlet {
              */
             String sql = "select kayttajatunnus, teksti, aikaleima " +
                     "from kayttaja join viesti on kayttaja.id = viesti.kirjoittaja " +
-                    "where keskustelu=?";
+                    "where keskustelu=? order by aikaleima";
             PreparedStatement ps = yhteys.prepareStatement(sql);
             ps.setString(1, keskusteluId);
             ResultSet resultSet = ps.executeQuery();
