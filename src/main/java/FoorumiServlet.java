@@ -32,6 +32,7 @@ public class FoorumiServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         ArrayList<Kategoria> kategoriat = new ArrayList<>();
+
         try (Connection yhteys = dataSource.getConnection()) {
             //haetaan tietokannasta kaikki kategoriat
             String sql = "select id, nimi from kategoria";
