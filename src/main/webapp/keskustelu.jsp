@@ -4,7 +4,7 @@
 
 %>
 <!doctype html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="utf-8">
 
@@ -34,12 +34,24 @@
     %>
 
 </div>
-<div class="kirjoita">
-    <form method="post" action="/Kirjoita">
-        <textarea name="viestiTeksti" rows="20" cols="50">Kirjoita kommentti tähän</textarea><br>
-        <input type="hidden" name="keskusteluId" value="<% out.print(request.getAttribute("keskusteluId")); %>"/>
-        <input type="submit" value="Lähetä">
-    </form>
-</div>
+<%
+    HttpSession istunto = request.getSession(false);
+    //String kayttajatunnus = (String) istunto.getAttribute("nimi");
+    if (istunto == null || istunto.getAttribute("nimi") == null) {
+        out.println("<p>Kirjaudu sisään kirjoittaaksesi viestin</p>");
+    } else {
+        String id = (String) request.getAttribute("keskusteluId");
+        out.println("<div class='kirjoita'>");
+        out.println("<form method = 'post' action = '/kirjoita'>");
+        out.println("<textarea name = 'viestiTeksti' rows = '20' cols = '50' > Kirjoita kommentti tähän</textarea ><br >");
+        out.println("<input type = 'hidden' name = 'keskusteluId' value = '" + id + "'/>");
+        out.println("<input type='submit' value='Lähetä'>");
+        out.println("</form >");
+        out.println("</div >");
+    }
+
+
+%>
+
 </body>
 </html>

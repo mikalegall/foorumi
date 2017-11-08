@@ -4,16 +4,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * Tämä servletti kirjoittaa käyttäjän postauksen tietokantaan.
  */
-@WebServlet(name = "KirjoitaServlet", urlPatterns = "/Kirjoita")
+@WebServlet(name = "KirjoitaServlet", urlPatterns = "/kirjoita")
 public class KirjoitaServlet extends HttpServlet {
     @Resource(name = "jdbc/foorumi")
     DataSource dataSource;
@@ -28,7 +30,21 @@ public class KirjoitaServlet extends HttpServlet {
             String sql = "insert into viesti values (?, ?, ?, ?, ?)";
             PreparedStatement ps = yhteys.prepareStatement(sql);
             ps.setInt(1, 0); // Käytetään indeksiä nolla, jolloin SQL auto-increment hoitaa nimeämisen
-            ps.setInt(2, 3); // Käytetään käyttäjää vieras
+            HttpSession istunto = request.getSession(false);
+            String nimi = (String) istunto.getAttribute("nimi");
+            int id = 0;
+            try (Connection con = dataSource.getConnection()) {
+                PreparedStatement stmt = con.prepareStatement("SELECT id FROM kayttaja WHERE kayttajatunnus=?");
+                stmt.setString(1, nimi);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    String ids = rs.getString("id");
+                    id = Integer.parseInt(ids);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+            ps.setInt(2, id);
             ps.setString(3, keskusteluId);
             ps.setString(4, request.getParameter("viestiTeksti"));
             ps.setString(5, "2000-01-01");  // To Be Implemented :)
@@ -37,7 +53,7 @@ public class KirjoitaServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("/Keskustelu?id=" + keskusteluId);
+        response.sendRedirect("/keskustelu?id=" + keskusteluId);
 
     }
 
