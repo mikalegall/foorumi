@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * keskustelu.jsp -tiedostolle.
  *
  */
-@WebServlet(name = "KeskusteluServlet", urlPatterns = "/Keskustelu")
+@WebServlet(name = "KeskusteluServlet", urlPatterns = "/keskustelu")
 public class KeskusteluServlet extends HttpServlet {
     @Resource(name = "jdbc/foorumi")
     DataSource dataSource;
