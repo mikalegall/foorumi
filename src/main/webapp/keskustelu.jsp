@@ -25,7 +25,7 @@
         for (Viesti viesti : viestit) {
             out.println("<div class='viesti'>");
             out.println(viesti.getKirjoittaja() + ": " + viesti.getTeksti());
-            out.println("</div>")
+            out.println("</div>");
         }
     %>
 

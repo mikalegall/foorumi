@@ -1,3 +1,4 @@
+import luokat.Kategoria;
 import luokat.Viesti;
 
 import javax.annotation.Resource;
@@ -28,80 +29,27 @@ public class FoorumiServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String kategoria = request.getParameter("kategoria");
-        if (kategoria != null) {
-            response.setContentType("text/html");
-            PrintWriter writer = response.getWriter();
-
-            String keskustelu = request.getParameter("keskustelu");
-            if (keskustelu != null) {
-                ArrayList<Viesti> viestit = new ArrayList<>();
-                String keskusteluNimi = "";
-                try (Connection yhteys = dataSource.getConnection()) {
-                    String sql = "select teksti from viesti";
-                    PreparedStatement ps = yhteys.prepareStatement(sql);
-                    ResultSet resultSet = ps.executeQuery();
-                    while (resultSet.next()) {
-                        Viesti v = new Viesti();
-                        v.setTeksti(resultSet.getString("teksti"));
-                        viestit.add(v);
-                    }
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                request.setAttribute("viestit", viestit);
-                request.getRequestDispatcher("keskustelu.jsp").forward(request, response);
-            } else {
-                //haetaan tietokannasta keskustelujen otsikot
-                ArrayList<String> keskustelut = new ArrayList<>();
-                try (Connection yhteys = dataSource.getConnection()) {
-                    String sql = "select * from keskustelu join kategoria on kategoria.id=keskustelu.kategoria and kategoria.nimi=?";
-                    PreparedStatement ps = yhteys.prepareStatement(sql);
-                    ps.setString(1, kategoria);
-                    ResultSet tulos = ps.executeQuery();
-                    while (tulos.next()) {
-                        keskustelut.add(tulos.getString("otsikko"));
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                request.setAttribute("kategoria", kategoria);
-                request.setAttribute("keskusteluotsikot", keskustelut);
-                request.getRequestDispatcher("kategoriat.jsp").forward(request, response);
-            }
-
-            writer.close();
-        } else {
-            // haetaan tietokannasta kategorioiden nimet
-            ArrayList<String> nimet = new ArrayList<>();
-            try (Connection yhteys = dataSource.getConnection()) {
-                String sql = "select nimi from kategoria";
-                PreparedStatement ps = yhteys.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    nimet.add(rs.getString("nimi"));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            request.setAttribute("kategorianimet", nimet);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
-
-    }
-
-    private ResultSet query(String sql) {
-        ResultSet resultSet = null;
+        response.setContentType("text/html");
+        PrintWriter writer = response.getWriter();
+        ArrayList<Kategoria> kategoriat = new ArrayList<>();
         try (Connection yhteys = dataSource.getConnection()) {
+            //haetaan tietokannasta kaikki kategoriat
+            String sql = "select id, nimi from kategoria";
             PreparedStatement ps = yhteys.prepareStatement(sql);
-            resultSet = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            //luodaan lista kategorioista
+            while (rs.next()) {
+                Kategoria k = new Kategoria(rs);
+                kategoriat.add(k);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return resultSet;
-    }
 
+        request.setAttribute("kategoriat", kategoriat);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        writer.close();
+    }
 
 }
