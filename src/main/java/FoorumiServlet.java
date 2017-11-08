@@ -75,6 +75,7 @@ public class FoorumiServlet extends HttpServlet {
         } else {
             // haetaan tietokannasta kategorioiden nimet
             ArrayList<String> nimet = new ArrayList<>();
+            nimet.add("FOOBAR");
             try (Connection yhteys = dataSource.getConnection()) {
                 String sql = "select nimi from kategoria";
                 PreparedStatement ps = yhteys.prepareStatement(sql);
@@ -85,7 +86,7 @@ public class FoorumiServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            request.setAttribute("foo",nimet.size());
             request.setAttribute("kategorianimet", nimet);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
