@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Tämä servletti kirjoittaa käyttäjän postauksen tietokantaan.
@@ -44,10 +43,11 @@ public class KirjoitaServlet extends HttpServlet {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
+            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             ps.setInt(2, id);
             ps.setString(3, keskusteluId);
             ps.setString(4, request.getParameter("viestiTeksti"));
-            ps.setString(5, "2000-01-01");  // To Be Implemented :)
+            ps.setString(5, timeStamp);  // To Be Implemented :)
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
