@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Alegreya');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body{
+    width: 70%;
+    margin-left:auto;
+    margin-right:auto;
+    font-family: "Cabin";
+}
+
+nav {
+    background-color: #222222;
+    color: #f7f7f7;
+    border: none;
+}
+
+blockquote  {
+    font-family: "Lobster", Georgia, serif;
+    color: #222222;
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3em;
+    margin-bottom: 0.8em;
+    position: relative;
+    padding: 1%;
+}
+
+blockquote:before{
+    display: block;
+    color: #f7f7f7;
+    content: "\201C";
+    font-family: 'Alegreya', Georgia, serif;
+    font-size: 250px;
+    font-size: 25rem;
+    position: absolute;
+    top: 45px;
+    left: -50px;
+    z-index: -1;
+    padding: 10%;
+}
+
+#intro:after{
+    content: '\002A \002A \002A \002A \002A';
+    display: block;
+    color: #f7f7f7;
+    letter-spacing: 25px;
+    line-height: 1;
+    font-size: 5rem;
+    font-family: Arial, serif;
+    text-align: center;
+    text-indent: 25px;
+}
+
+p{
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.banner {
+    background-image: url("https://argentdemo.files.wordpress.com/2015/05/cropped-macbook-336651_1920.jpg");
+    height: 100px;
+    background-color: #f7f7f7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+    padding: 4.25em 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.maintitle  {
+    border: 7px solid currentColor;
+    color: #222;
+    display: block;
+    padding: 0.45em;
+    display: table;
+    font-family: "Cabin",Helvetica,sans-serif;
+    line-height: 1.25;
+    letter-spacing: .03em;
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    z-index: 0;
+}
+
+.categories  {
+    border: 7px solid white;
+    color: white;
+    display: block;
+    padding: 0.45em;
+    display: table;
+    font-family: "Cabin",Helvetica,sans-serif;
+    line-height: 1.25;
+    letter-spacing: .03em;
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    z-index: 0;
+}
+
+.topics{
+    position:relative;
+    width:100%;
+    min-width:315px;
+    font-family: Cabin;
+    color: #f7f7f7;
+    font-size: 22px;
+}
+.leftDIV{
+    position:absolute;
+    top:0px;
+    left:0px;
+    height:200px;
+    width:270px;
+    background-image: url("https://www.videvo.net/videvo_files/images/Hacker_code_whiteblack_01_Videvo.jpg");
+    background-size: cover;
+    font-family: "Cabin",Helvetica,sans-serif;
+    line-height: 1.25;
+    letter-spacing: .03em;
+    margin: 0 auto;
+    max-width: 90%;
+    z-index: 0;
+    padding: 4.25em 0;
+}
+
+.leftDIV:hover{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url("https://www.videvo.net/videvo_files/images/Hacker_code_whiteblack_01_Videvo.jpg");
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 4.25em 0;
+}
+.middleDIV{
+    height:200px;
+    width:270px;
+    background-image: url("http://andrewmedal.com/wp-content/uploads/2016/08/Mic-black-and-white.jpg");
+    background-size: cover;
+    margin:0px auto;
+    text-align: center;
+    padding: 4.25em 0;
+}
+.middleDIV:hover{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url("http://andrewmedal.com/wp-content/uploads/2016/08/Mic-black-and-white.jpg");
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 4.25em 0;
+}
+.rightDIV{
+    position:absolute;
+    top:0px;
+    right:0px;
+    height:200px;
+    width:270px;
+    background-image: url("https://images.pexels.com/photos/274192/pexels-photo-274192.jpeg?h=350&auto=compress&cs=tinysrgb");
+    background-size: cover;
+    text-align: center;
+    padding: 4.25em 0;
+}
+
+.rightDIV:hover{
+    background: rgba(0, 0, 0, 0.5);
+    background-image: url("https://images.pexels.com/photos/274192/pexels-photo-274192.jpeg?h=350&auto=compress&cs=tinysrgb");
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 4.25em 0;
+
+.bottom {
+    background-color: #000000;
+}
+
+
+
+.button {
+    background: none;
+    border: solid 2px #474544;
+    border-radius: 20px;
+    color: #474544;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    outline: none;
+    padding: 20px 35px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#form_button:hover {
+    background: #474544;
+    color: #F2F3EB;
+}
