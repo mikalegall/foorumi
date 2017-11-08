@@ -1,30 +1,36 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="luokat.Kategoria" %>
 <%
-
 %>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-
-    <title>AcademyFoorumi</title>
-    <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <title>Academy forum</title>
+    <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
-
 <body>
-
-<h1>AcademyFoorumi</h1>
-
-<div id="kategoriat">
-    <%
-        ArrayList<Kategoria> kategoriat = (ArrayList<Kategoria>) request.getAttribute("kategoriat");
-        for (Kategoria k : kategoriat) {
-            out.println("<a href='/kategoria?id=" + k.getId() + "'>" + k.getNimi() + "</a><br>");
-        }
-    %>
-
+<nav>
+    <h3 style="text-align: right">Kirjaudu</h3>
+    <br>
+</nav>
+<div class="banner">
+    <h1 class="maintitle">ACADEMY FORUM</h1>
+</div>
+<div class="stuff">
+    <blockquote>
+        <p style="text-align: center">Täällä voit keskustella Academyyn liittyvistä aiheista</p>
+    </blockquote>
+    <p >Valitse aihe luettavaksi, tai kirjaudu ja lisää kommentteja.</p>
+    <p id="intro"> Voit myös luoda käyttäjätunnukset jos sinulla ei vielä ole sellaisia.</p>
+    <div class="topics">
+        <div class="leftDIV" onclick="location.href='/kategoria?id=1';" style="cursor: pointer; text-align: center;"><p class="categories">KOODAUS</p></div>
+        <div class="middleDIV" onclick="location.href='/kategoria?id=2';" style="text-align: center"><p class="categories">SOFT SKILLS</p></div>
+        <div class="rightDIV" onclick="location.href='/kategoria?id=3';" style="text-align: center"><p class="categories">RANDOM</p></div>
+    </div>
+</div>
+<div class="bottom">
+    <p>Varoitus: sivulla tietoturva-aukkoja</p>
 </div>
 </body>
 </html>
