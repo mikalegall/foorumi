@@ -18,6 +18,7 @@
 
 <div id="kategoriat">
     <%
+        out.println(request.getAttribute("foo"));
         ArrayList<String> kategorianimet = (ArrayList<String>) request.getAttribute("kategorianimet");
         for (String kategorianimi : kategorianimet) {
             out.println("<a href='index.html?kategoria=" + kategorianimi + "'>" + kategorianimi + "</a><br>");

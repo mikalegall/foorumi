@@ -21,7 +21,7 @@
 
 <div id="keskustelut">
     <%
-        ArrayList<String> keskustelut = (ArrayList<String>) request.getAttribute("keskustelut");
+        ArrayList<String> keskustelut = (ArrayList<String>) request.getAttribute("keskusteluotsikot");
         for (String keskustelu : keskustelut) {
             out.println("<a href='index.html?kategoria=" + keskustelu + "'>" + keskustelu + "</a><br>");
         }
