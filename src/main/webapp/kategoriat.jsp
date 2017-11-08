@@ -24,7 +24,7 @@
     <%
         ArrayList<Keskustelu> keskustelut = (ArrayList<Keskustelu>) request.getAttribute("keskustelut");
         for (Keskustelu keskustelu : keskustelut) {
-            out.println("<a href='index.html?id=" + keskustelu.getId() + "'>" + keskustelu.getOtsikko() + "</a><br>");
+            out.println("<a href='/keskustelu?id=" + keskustelu.getId() + "'>" + keskustelu.getOtsikko() + "</a><br>");
         }
     %>
 </div>
