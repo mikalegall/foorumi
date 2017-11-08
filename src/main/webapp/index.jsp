@@ -1,4 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="luokat.Kategoria" %>
 <%
 
 %>
@@ -18,10 +19,9 @@
 
 <div id="kategoriat">
     <%
-        out.println(request.getAttribute("foo"));
-        ArrayList<String> kategorianimet = (ArrayList<String>) request.getAttribute("kategorianimet");
-        for (String kategorianimi : kategorianimet) {
-            out.println("<a href='index.html?kategoria=" + kategorianimi + "'>" + kategorianimi + "</a><br>");
+        ArrayList<Kategoria> kategoriat = (ArrayList<Kategoria>) request.getAttribute("kategoriat");
+        for (Kategoria k : kategoriat) {
+            out.println("<a href='/kategoria?id=" + k.getId() + "'>" + k.getNimi() + "</a><br>");
         }
     %>
 
