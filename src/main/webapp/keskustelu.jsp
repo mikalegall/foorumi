@@ -2,38 +2,34 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="luokat.Viesti" %>
 <%
-
 %>
 <!doctype html>
 <html lang="fi">
 <head>
     <meta charset="utf-8">
-
     <title>AcademyFoorumi</title>
     <link rel="stylesheet" href="forumstyle.css">
-
 </head>
-
 <body>
-
-<h1>AcademyFoorumi</h1>
-
-<a href="/">foorumi</a> /
+<div class="banner">
+    <h1 class="maintitle">ACADEMY FORUM</h1>
+</div>
+<a href="/">Etusivu</a> /
 <a href="/kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
     <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a>
-
-<h2><% out.print(request.getAttribute("keskusteluOtsikko")); %></h2>
-
+<blockquote>
+    <p style="text-align: center"><% out.print(request.getAttribute("keskusteluOtsikko")); %></p>
+</blockquote>
 <div id="viestit">
     <%
         ArrayList<Viesti> viestit = (ArrayList<Viesti>) request.getAttribute("viestit");
         for (Viesti viesti : viestit) {
             out.println("<div class='viesti'>");
-            out.println(viesti.getKirjoittaja() + ": " + viesti.getTeksti());
+            out.println("<strong>" + viesti.getKirjoittaja() + "</strong><br>");
+            out.println("<br>" + viesti.getTeksti() + "<br><br><hr>");
             out.println("</div>");
         }
     %>
-
 </div>
 <%
     HttpSession istunto = request.getSession(false);
@@ -50,9 +46,6 @@
         out.println("</form >");
         out.println("</div >");
     }
-
-
 %>
-
 </body>
 </html>
