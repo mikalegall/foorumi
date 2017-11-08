@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 
-@WebServlet(name = "Rekisteröidy", urlPatterns = {"/Rekisteridy"})
+@WebServlet(name = "Rekisteröidy", urlPatterns = {"/rekisteroidy"})
 public class RekisteridyServlet extends HttpServlet {
     Boolean tyhjä = false;
     Boolean salasanavirhe = false;

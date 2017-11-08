@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
     <title>AcademyFoorumi</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="forumstyle.css">
 
 </head>
 
@@ -19,7 +19,7 @@
 <h1>AcademyFoorumi</h1>
 
 <a href="/">foorumi</a> /
-<a href="/Kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
+<a href="/kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
     <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a>
 
 <h2><% out.print(request.getAttribute("keskusteluOtsikko")); %></h2>
