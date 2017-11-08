@@ -17,7 +17,11 @@
 
 <h1>AcademyFoorumi</h1>
 
-<h2><% out.print(request.getAttribute("keskustelunimi")); %></h2>
+<a href="/">foorumi</a> /
+<a href="/Kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
+    <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a>
+
+<h2><% out.print(request.getAttribute("keskusteluOtsikko")); %></h2>
 
 <div id="viestit">
     <%
@@ -32,7 +36,8 @@
 </div>
 <div class="kirjoita">
     <form method="post" action="/Kirjoita">
-        <textarea rows="50" cols="50">Kirjoita kommentti tähän</textarea><br>
+        <textarea name="viestiTeksti" rows="20" cols="50">Kirjoita kommentti tähän</textarea><br>
+        <input type="hidden" name="keskusteluId" value="<% out.print(request.getAttribute("keskusteluId")); %>"/>
         <input type="submit" value="Lähetä">
     </form>
 </div>

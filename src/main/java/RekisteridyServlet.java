@@ -76,35 +76,39 @@ public class RekisteridyServlet extends HttpServlet {
             out.println("<html lang='fi'>");
             out.println("<head>");
             out.println("<meta charset='utf-8'/>");
+            HttpSession istunto = request.getSession(false);
             out.println("<title>Rekisteröidy</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Rekisteröidy</h1>");
-            if (tyhjä) {
-                out.println("<p>Käyttäjätunnus tai salasana ei saa olla tyhjä<p>");
-                tyhjä = false;
+            if (istunto != null) {
+                if (tyhjä) {
+                    out.println("<p>Käyttäjätunnus tai salasana ei saa olla tyhjä<p>");
+                    tyhjä = false;
+                }
+                if (salasanavirhe) {
+                    out.println("<p>Salasanan vahvistus epäonnistui<p>");
+                    salasanavirhe = false;
+                }
+                if (varattu) {
+                    out.println("<p>Käyttäjätunnus on varattu<p>");
+                    varattu = false;
+                }
+                if (lyhytsalasana) {
+                    out.println("<p>Salasanan on oltava vähintään 5 merkkiä pitkä<p>");
+                    lyhytsalasana = false;
+                }
+                out.println("<form method=POST>");
+                out.println("<p>Käyttäjätunnus: <input name='nimi'></p>");
+                out.println("<p>Salasana: <input name='salasana' type='password'></p>");
+                out.println("<p>Vahvista salasana: <input name='salasana2' type='password'></p>");
+                out.println("<p><input type='submit' value='Rekisteröidy'></p>");
+                out.println("</form>");
+                out.println("</body>");
+                out.println("</html>");
+            } else {
+                out.println("<p>Kirjaudu ulos rekisteröidäksesi uuden käyttäjän<p>");
             }
-            if (salasanavirhe) {
-                out.println("<p>Salasanan vahvistus epäonnistui<p>");
-                salasanavirhe = false;
-            }
-            if (varattu) {
-                out.println("<p>Käyttäjätunnus on varattu<p>");
-                varattu = false;
-            }
-            if (lyhytsalasana) {
-                out.println("<p>Salasanan on oltava vähintään 5 merkkiä pitkä<p>");
-                lyhytsalasana = false;
-            }
-            out.println("<form method=POST>");
-            out.println("<p>Käyttäjätunnus: <input name='nimi'></p>");
-            out.println("<p>Salasana: <input name='salasana' type='password'></p>");
-            out.println("<p>Vahvista salasana: <input name='salasana2' type='password'></p>");
-            out.println("<p><input type='submit' value='Rekisteröidy'></p>");
-            out.println("</form>");
-            out.println("</body>");
-            out.println("</html>");
-
         }
     }
 }

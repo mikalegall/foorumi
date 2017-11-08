@@ -18,9 +18,10 @@ public class KirjauduServlet extends HttpServlet {
     Boolean virhe = false;
     @Resource(name = "jdbc/foorumi")
     DataSource ds;
+    HttpSession istunto;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession istunto = request.getSession(false);
+        istunto = request.getSession(false);
         String nimi = "";
         String salasana = "";
         if (istunto != null) {
@@ -66,7 +67,7 @@ public class KirjauduServlet extends HttpServlet {
             virhe = true;
             response.sendRedirect("KirjauduServlet");
         }
-        HttpSession istunto = request.getSession(false);
+        istunto = request.getSession(false);
 
             try (Connection con = ds.getConnection()) {
                 String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ? AND salasana = ?";
@@ -94,7 +95,7 @@ public class KirjauduServlet extends HttpServlet {
                     out.println("</h3>");
                     out.println("</body>");
                     out.println("</html>");
-                    response.sendRedirect("/index.html");;
+                    response.sendRedirect("/index.html");
                 }
 
             } catch (SQLException e) {
