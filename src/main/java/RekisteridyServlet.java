@@ -62,7 +62,7 @@ public class RekisteridyServlet extends HttpServlet {
                 stmt.executeUpdate();
                 response.setContentType("text/html");
                 PrintWriter out = response.getWriter();
-                response.sendRedirect("/Kirjaudu");
+                response.sendRedirect("/kirjaudu");
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
