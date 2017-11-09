@@ -31,7 +31,7 @@ public class PoistaServlet extends HttpServlet {
     private String keskusteluID;
     private String kategoriaID;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id;
         //Tarkistetaan, onko parametrina viestiID, keskusteluID vai kayttajaID ja ohjataan oikeaan metodiin
         if (request.getParameter("viestiID") != null) {
