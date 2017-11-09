@@ -75,13 +75,16 @@ public class RekisteridyServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='fi'>");
             out.println("<head>");
+            out.println("<link rel='stylesheet' type='text/css' href='forumstyle.css'>");
             out.println("<meta charset='utf-8'/>");
             HttpSession istunto = request.getSession(false);
             out.println("<title>Rekisteröidy</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Rekisteröidy</h1>");
-            if (istunto != null) {
+            out.println("<a href='/'>Takaisin etusivulle</a>");
+            out.println("<div>");
+            out.println("<h1 align='center'>Rekisteröidy</h1>");
+            if (istunto == null) {
                 if (tyhjä) {
                     out.println("<p>Käyttäjätunnus tai salasana ei saa olla tyhjä<p>");
                     tyhjä = false;
@@ -106,9 +109,12 @@ public class RekisteridyServlet extends HttpServlet {
                 out.println("</form>");
                 out.println("</body>");
                 out.println("</html>");
-            } else {
+            } else if (istunto != null && istunto.getAttribute("nimi") != null) {
                 out.println("<p>Kirjaudu ulos rekisteröidäksesi uuden käyttäjän<p>");
+            } else {
+                response.sendRedirect("/logout");
             }
+            out.println("</div>");
         }
     }
 }

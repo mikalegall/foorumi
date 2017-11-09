@@ -41,20 +41,24 @@ public class KirjauduServlet extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html lang='fi'>");
                 out.println("<head>");
+                out.println("<link rel='stylesheet' type='text/css' href='forumstyle.css'>");
                 out.println("<meta charset='utf-8'/>");
                 out.println("<title>Kirjaudu</title>");
                 out.println("</head>");
                 out.println("<body>");
-                out.println("<h1>Kirjaudu</h1>");
+                out.println("<a href='/'>Takaisin etusivulle</a>");
+                out.println("<div class='kirjaudu'>");
+                out.println("<h1 align='center'>Kirjaudu</h1>");
                 if (virhe) {
                     out.println("<p>Tarkista käyttäjätunnus ja salasana<p>");
                 }
                 out.println("<form method='post'>");
-                out.println("<p>Nimi: <input name='nimi' value='" + nimi + "'></p>");
+                out.println("<p>Nimi: <input name='nimi' value='" + nimi + "'>");
                 out.println("<p>Salasana: <input name='salasana' type='password'></p>");
                 out.println("<p><input type='submit' value='Kirjaudu'>");
                 out.println("</form>");
                 out.println("<a href='/'><button>Peruuta</button></a></p>");
+                out.println("</div>");
                 out.println("</body>");
                 out.println("</html>");
             }

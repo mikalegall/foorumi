@@ -46,9 +46,11 @@
     } else {
         String id = (String) request.getAttribute("keskusteluId");
         out.println("<div class='kirjoita'>");
+        out.println("<br>");
         out.println("<form method = 'post' action = '/kirjoita'>");
         out.println("<textarea name = 'viestiTeksti' rows = '20' cols = '50' > Kirjoita kommentti tähän</textarea ><br >");
         out.println("<input type = 'hidden' name = 'keskusteluId' value = '" + id + "'/>");
+        out.println("<br>");
         out.println("<input type='submit' value='Lähetä'>");
         out.println("</form >");
         out.println("</div >");

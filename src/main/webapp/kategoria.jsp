@@ -33,11 +33,15 @@
         out.println("<p>Kirjaudu sisään aloittaaksesi uuden viestiketjun</p>");
     } else {
         out.println("<div class='kirjoita'>");
+        out.println("<br>");
         out.println("<form method = 'post' action = '/kirjoita'>");
-        out.println("<input type='text' name='otsikko' />");
-        out.println("<textarea name = 'viestiTeksti' rows = '20' cols = '50' > Kirjoita kommentti tähän</textarea ><br >");
+        out.println("<textarea name ='otsikko' rows = '1' cols = '50' />Otsikko</textarea><br>");
+        out.println("<br>");
+        out.println("<textarea name = 'viestiTeksti' rows = '10' cols = '50' >Aloita uusi keskustelu</textarea ><br >");
         out.println("<input type = 'hidden' name = 'kategoriaId' value = '" + request.getAttribute("kategoriaid") + "'/>");
+        out.println("<br>");
         out.println("<input type='submit' value='Lähetä'>");
+        out.println("<br>");
         out.println("</form >");
         out.println("</div >");
     }
