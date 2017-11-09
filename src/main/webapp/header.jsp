@@ -1,7 +1,20 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <nav class="navbar">
     <ul>
-        <li><a href="badges.html">KIRJAUTUMINEN</a></li>
-        <li><input type="text" name="search" placeholder="Etsi.."></li>
+        <%
+            HttpSession istunto = request.getSession(false);
+            if (istunto == null || istunto.getAttribute("nimi") == null) {
+                out.println("<li><a href='/kirjaudu'>KIRJAUDU</a></li>");
+            } else if (istunto.getAttribute("rooli").equals("tavis")) {
+                out.println("<li><a href='/logout'>KIRJAUDU ULOS</a></li>");
+                out.println("<li><a href='/VaihdaSalasana'>VAIHDA SALASANA</a></li>");
+            } else if (istunto.getAttribute("rooli").equals("moderaattori")) {
+                out.println("<li><a href='/logout'>KIRJAUDU ULOS</a></li>");
+                out.println("<li><a href='/VaihdaSalasana'>VAIHDA SALASANA</a></li>");
+                out.println("<li><a href='/kayttajat.jsp'>KÄYTTÄJÄT</a></li>");
+            }
+        %>
+        <li><form method="post" action="/haku"><input type="text" name="haku" placeholder="Etsi.."></form></li>
     </ul>
     <br>
 </nav>

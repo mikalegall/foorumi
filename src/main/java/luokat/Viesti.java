@@ -7,8 +7,27 @@ import java.time.LocalDate;
  */
 public class Viesti {
 
-    private String kirjoittaja, teksti;
-    private LocalDate aikaleima;
+    private String id;
+    private String kirjoittaja;
+    private String teksti;
+    private String keskusteluId;
+    private String aikaleima;
+
+    public String getKeskusteluId() {
+        return keskusteluId;
+    }
+
+    public void setKeskusteluId(String keskusteluId) {
+        this.keskusteluId = keskusteluId;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public String getKirjoittaja() {
         return kirjoittaja;
@@ -26,13 +45,13 @@ public class Viesti {
         this.teksti = teksti;
     }
 
-    public LocalDate getAikaleima() {
+
+    public String getAikaleima() {
         return aikaleima;
     }
 
-    public void setAikaleima(LocalDate aikaleima) {
+    public void setAikaleima(String aikaleima) {
         this.aikaleima = aikaleima;
     }
-
 
 }

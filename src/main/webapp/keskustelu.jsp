@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="luokat.Viesti" %>
-<%
-%>
+
 <!doctype html>
 <html lang="fi">
 <head>
@@ -23,16 +22,21 @@
     <%
         ArrayList<Viesti> viestit = (ArrayList<Viesti>) request.getAttribute("viestit");
         for (Viesti viesti : viestit) {
-            out.println("<div class='viesti'>");
-            out.println("<strong>" + viesti.getKirjoittaja() + "</strong><br>");
-            out.println("<br>" + viesti.getTeksti() + "<br><br><hr>");
-            out.println("</div>");
+            out.println("<div class='viesti' id='" + viesti.getId() + "'>");
+            out.println("<strong>" + viesti.getKirjoittaja() + "</strong> @ " + viesti.getAikaleima() + "<br>");
+            out.println("<br>" + viesti.getTeksti() + "<br>");
+
+            if (istunto != null && istunto.getAttribute("rooli") != null && istunto.getAttribute("rooli").equals("moderaattori"))
+                out.println("<form method='post' action='/poista?viestiID=" + viesti.getId() + "'>" +
+                        "<input type='submit' class='poistaviesti' value='Poista' /></form>");
+
+            ///poista?viestiID=
+            out.println("<br><hr></div>");
         }
     %>
 </div>
 <%
-    HttpSession istunto = request.getSession(false);
-    //String kayttajatunnus = (String) istunto.getAttribute("nimi");
+    //HttpSession istunto = request.getSession(false);
     if (istunto == null || istunto.getAttribute("nimi") == null) {
         out.println("<p>Kirjaudu sisään kirjoittaaksesi viestin</p>");
     } else {
