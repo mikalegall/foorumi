@@ -29,6 +29,26 @@
         }
     %>
 </div>
+
+<%
+    HttpSession istunto = request.getSession(false);
+    //String kayttajatunnus = (String) istunto.getAttribute("nimi");
+    if (istunto == null || istunto.getAttribute("nimi") == null) {
+        out.println("<p>Kirjaudu sisään aloittaaksesi uuden viestiketjun</p>");
+    } else {
+        out.println("<div class='kirjoita'>");
+        out.println("<form method = 'post' action = '/kirjoita'>");
+        out.println("<input type='text' name='otsikko' />");
+        out.println("<textarea name = 'viestiTeksti' rows = '20' cols = '50' > Kirjoita kommentti tähän</textarea ><br >");
+        out.println("<input type = 'hidden' name = 'kategoriaId' value = '" + request.getAttribute("kategoriaid") + "'/>");
+        out.println("<input type='submit' value='Lähetä'>");
+        out.println("</form >");
+        out.println("</div >");
+    }
+
+
+%>
+
 </body>
 </html>
 </body>
