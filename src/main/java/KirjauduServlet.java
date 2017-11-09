@@ -76,7 +76,7 @@ public class KirjauduServlet extends HttpServlet {
             virhe = true;
             response.sendRedirect("KirjauduServlet");
         }
-        //istunto = request.getSession(false);
+        istunto = request.getSession(false);
 
         try (Connection con = ds.getConnection()) {
             String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ? AND salasana = ?";
