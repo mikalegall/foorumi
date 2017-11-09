@@ -1,5 +1,5 @@
 <%@ page import="java.io.PrintWriter" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
@@ -8,6 +8,7 @@
 </sql:query>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Käyttäjät</title>
     <link rel="stylesheet" href="forumstyle.css">
 </head>
@@ -15,8 +16,6 @@
 <%@ include file="header.jsp" %>
 <a href="/">Etusivu</a>
 <%
-
-    HttpSession istunto = request.getSession(false);
     if (istunto == null || istunto.getAttribute("nimi") == null) {
         response.sendRedirect("/");
 
@@ -35,7 +34,7 @@
 <div id="viestit">
     <table style="width:100%">
         <tr>
-            <th align="left">Kayttäjätunnus</th>
+            <th align="left">Käyttäjätunnus</th>
             <th align="left">Rooli</th>
         </tr>
         <c:forEach var="row" items="${rs.rows}">
