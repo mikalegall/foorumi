@@ -58,7 +58,7 @@ public class KeskusteluServlet extends HttpServlet {
             Samalla haetaan jokaisen viestin kirjoittajan käyttäjätunnus ja talletetaan
             nämä tiedot Viesti-olioon, joka lisätään viestit-listaan.
              */
-            String sql = "select kayttajatunnus, teksti, aikaleima " +
+            String sql = "select viesti.id as viestiid, kayttajatunnus, teksti, aikaleima " +
                     "from kayttaja join viesti on kayttaja.id = viesti.kirjoittaja " +
                     "where keskustelu=? order by aikaleima";
             PreparedStatement ps = yhteys.prepareStatement(sql);
@@ -68,6 +68,7 @@ public class KeskusteluServlet extends HttpServlet {
                 Viesti v = new Viesti();
                 v.setTeksti(resultSet.getString("teksti"));
                 v.setKirjoittaja(resultSet.getString("kayttajatunnus"));
+                v.setId(resultSet.getString("viestiid"));
                 viestit.add(v);
             }
 
