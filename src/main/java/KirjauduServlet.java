@@ -53,6 +53,7 @@ public class KirjauduServlet extends HttpServlet {
                 out.println("<p>Nimi: <input name='nimi' value='" + nimi + "'></p>");
                 out.println("<p>Salasana: <input name='salasana' type='password'></p>");
                 out.println("<p><input type='submit' value='Kirjaudu'></p>");
+                out.println("<input type='hidden' name='url' value='" + request.getAttribute("url") + "'/>");
                 out.println("</form>");
                 out.println("</body>");
                 out.println("</html>");
@@ -88,12 +89,7 @@ public class KirjauduServlet extends HttpServlet {
                 istunto.setAttribute("nimi", nimi);
                 String rooli = rs.getString("rooli");
                 istunto.setAttribute("rooli", rooli);
-                String url = "";
-                if (url != null || url != ""){
-                    response.sendRedirect(url);
-                } else {
-                    response.sendRedirect("/");
-                }
+                response.sendRedirect(request.getParameter("url"));
             }
 
         } catch (SQLException e) {
