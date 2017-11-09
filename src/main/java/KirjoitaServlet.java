@@ -90,11 +90,12 @@ public class KirjoitaServlet extends HttpServlet {
 
     }
 
-
-
+    /*
+    Metodi luoUusiKeskustelu luo tietokantaan tauluun keskustelu uuden rivin käyttäen
+    SQL:n auto-increment ominaisuutta ja palauttaa uuden keskustelun id-tunnuksen
+    String-muotoisena.
+     */
     private String luoUusiKeskustelu(String kategoriaId, String otsikko) {
-        System.out.println("#####: " + kategoriaId);
-        System.out.println(otsikko);
         String id =  null;
         try (Connection yhteys = dataSource.getConnection()) {
             String sql = "insert into keskustelu values(0, ?, ?)";

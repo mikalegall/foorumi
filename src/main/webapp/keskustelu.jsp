@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="forumstyle.css">
 </head>
 <body>
-<div class="banner">
-    <h1 class="maintitle">ACADEMY FORUM</h1>
-</div>
+<%@ include file="header.jsp" %>
 <a href="/">Etusivu</a> /
 <a href="/kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
-    <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a>
+    <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a> /
+    <% out.print(request.getAttribute("keskusteluOtsikko")); %>
 <blockquote>
     <p style="text-align: center"><% out.print(request.getAttribute("keskusteluOtsikko")); %></p>
 </blockquote>

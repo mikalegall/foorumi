@@ -24,6 +24,7 @@ public class KirjauduServlet extends HttpServlet {
         istunto = request.getSession(false);
         String nimi = "";
         String salasana = "";
+        String rooli = "";
         if (istunto != null) {
             nimi = (String) istunto.getAttribute("nimi");
             salasana = (String) istunto.getAttribute("salasana");
@@ -31,27 +32,31 @@ public class KirjauduServlet extends HttpServlet {
         if (nimi == null) {
             nimi = "";
         }
+
         response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html lang='fi'>");
-            out.println("<head>");
-            out.println("<meta charset='utf-8'/>");
-            out.println("<title>Kirjaudu</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Kirjaudu</h1>");
-            if (virhe) {
-                out.println("<p>Tarkista käyttäjätunnus ja salasana<p>");
+            if (istunto != null && istunto.getAttribute("nimi") != null) {
+                out.println("<p>Olet jo kirjautunut sisään " + istunto.getAttribute("nimi") + "<p>");
+            } else {
+                out.println("<!DOCTYPE html>");
+                out.println("<html lang='fi'>");
+                out.println("<head>");
+                out.println("<meta charset='utf-8'/>");
+                out.println("<title>Kirjaudu</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Kirjaudu</h1>");
+                if (virhe) {
+                    out.println("<p>Tarkista käyttäjätunnus ja salasana<p>");
+                }
+                out.println("<form method=POST>");
+                out.println("<p>Nimi: <input name='nimi' value='" + nimi + "'></p>");
+                out.println("<p>Salasana: <input name='salasana' type='password'></p>");
+                out.println("<p><input type='submit' value='Kirjaudu'></p>");
+                out.println("</form>");
+                out.println("</body>");
+                out.println("</html>");
             }
-            out.println("<form method=POST>");
-            out.println("<p>Nimi: <input name='nimi' value='" + nimi + "'></p>");
-            out.println("<p>Salasana: <input name='salasana' type='password'></p>");
-            out.println("<p><input type='submit' value='Kirjaudu'></p>");
-            out.println("</form>");
-            out.println("</body>");
-            out.println("</html>");
-
         }
     }
 
@@ -67,40 +72,33 @@ public class KirjauduServlet extends HttpServlet {
             virhe = true;
             response.sendRedirect("KirjauduServlet");
         }
-        istunto = request.getSession(false);
+        //istunto = request.getSession(false);
 
-            try (Connection con = ds.getConnection()) {
-                String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ? AND salasana = ?";
-                PreparedStatement lause = con.prepareStatement(sql);
-                lause.setString(1, nimi);
-                lause.setString(2, salasana);
-                ResultSet rs = lause.executeQuery();
-                if (!rs.next()) {
-                    virhe = true;
-                    doGet(request, response);
+        try (Connection con = ds.getConnection()) {
+            String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ? AND salasana = ?";
+            PreparedStatement lause = con.prepareStatement(sql);
+            lause.setString(1, nimi);
+            lause.setString(2, salasana);
+            ResultSet rs = lause.executeQuery();
+            if (!rs.next()) {
+                virhe = true;
+                doGet(request, response);
+            } else {
+                istunto = request.getSession(true);
+                istunto.setAttribute("nimi", nimi);
+                String rooli = rs.getString("rooli");
+                istunto.setAttribute("rooli", rooli);
+                String url = "";
+                if (url != null || url != ""){
+                    response.sendRedirect(url);
                 } else {
-                    istunto = request.getSession(true);
-                    istunto.setAttribute("nimi", nimi);
-                    response.setContentType("text/html");
-                    PrintWriter out = response.getWriter();
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Siirrytään..</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h3>");
-                    out.println("Olet nyt kirjautunut, sivun pitäisi siirtyä:");
-                    out.println("<a href='/index.html'>");
-                    out.println("Etusivulle</a>");
-                    out.println("</h3>");
-                    out.println("</body>");
-                    out.println("</html>");
-                    response.sendRedirect("/index.html");
+                    response.sendRedirect("/");
                 }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

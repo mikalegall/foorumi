@@ -11,13 +11,9 @@
     <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
 <body>
-<nav>
-    <h3 style="text-align: right">Kirjaudu</h3>
-    <br>
-</nav>
-<div class="banner">
-    <h1 class="maintitle">ACADEMY FORUM</h1>
-</div>
+<%@ include file="header.jsp" %>
+<a href="/">Etusivu</a> /
+    <% out.print(request.getAttribute("kategoria")); %>
 <blockquote>
     <p style="text-align: center"><% out.println(request.getAttribute("kategoria")); %></p>
 </blockquote>
