@@ -1,7 +1,7 @@
 <nav class="navbar">
     <ul>
         <li><a href="badges.html">KIRJAUTUMINEN</a></li>
-        <li><input type="text" name="search" placeholder="Etsi.."></li>
+        <li><form method="post" action="/haku"><input type="text" name="haku" placeholder="Etsi.."></form></li>
     </ul>
     <br>
 </nav>

@@ -23,7 +23,7 @@
     <%
         ArrayList<Viesti> viestit = (ArrayList<Viesti>) request.getAttribute("viestit");
         for (Viesti viesti : viestit) {
-            out.println("<div class='viesti'>");
+            out.println("<div class='viesti' id='" + viesti.getId() + "'>");
             out.println("<strong>" + viesti.getKirjoittaja() + "</strong><br>");
             out.println("<br>" + viesti.getTeksti() + "<br><br><hr>");
             out.println("</div>");
@@ -32,7 +32,6 @@
 </div>
 <%
     HttpSession istunto = request.getSession(false);
-    //String kayttajatunnus = (String) istunto.getAttribute("nimi");
     if (istunto == null || istunto.getAttribute("nimi") == null) {
         out.println("<p>Kirjaudu sisään kirjoittaaksesi viestin</p>");
     } else {
