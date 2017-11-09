@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "KirjauduServlet", urlPatterns = {"/Kirjaudu"})
+@WebServlet(name = "KirjauduServlet", urlPatterns = {"/kirjaudu"})
 public class KirjauduServlet extends HttpServlet {
     Boolean virhe = false;
     @Resource(name = "jdbc/foorumi")

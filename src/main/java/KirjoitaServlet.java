@@ -12,7 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Tämä servletti kirjoittaa käyttäjän postauksen tietokantaan.
+ * Tämä servletti kirjoittaa käyttäjän postauksen tietokantaan. Käyttäjän tulee olla kirjautunut
+ * sisään käyttääkseen tätä servlettiä. KirjoitaServlet lisää joko uuden viestiketjun ja laittaa
+ * siihen ensimmäisen viestin, tai lisää uuden viestin olemassaolevaan viestiketjuun.,
  */
 @WebServlet(name = "KirjoitaServlet", urlPatterns = "/kirjoita")
 public class KirjoitaServlet extends HttpServlet {
@@ -20,8 +22,35 @@ public class KirjoitaServlet extends HttpServlet {
     DataSource dataSource;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession istunto = request.getSession(false);
+        /*
+        Jos käyttäjä ei ole kirjautunut, tänne ei ole mitään asiaa.
+         */
+        if (istunto == null || istunto.getAttribute("nimi") == null) {
+            response.sendRedirect("/kirjaudu");
+        }
+
+        /*
+        Tarkistetaan, mihin keskusteluun käyttäjä on vastaamassa. Mikäli käyttäjä on
+        aloittamassa uutta keskustelua, keskusteluId == null.
+         */
         String keskusteluId = request.getParameter("keskusteluId");
 
+        /*
+        Mikäli käyttäjä on aloittamassa uutta keskustelua, kategoriaId on asetettu.
+        Tässä tapauksessa luodaan uusi keskustelu ja talletetaan keskustelun id
+        muuttujaan keskusteluId.
+         */
+        String kategoriaId = request.getParameter("kategoriaId");
+        String otsikko = request.getParameter("otsikko");
+        if (kategoriaId != null) {
+            keskusteluId = luoUusiKeskustelu(kategoriaId, otsikko);
+        }
+
+        /*
+        Kirjoitetaan käyttäjän viesti keskusteluun. Tämä tehdään riippumatta siitä onko
+        kyseessä uusi keskustelu vai jatko edelliseen keskusteluun.
+         */
         try (Connection yhteys = dataSource.getConnection()) {
             /*
             SQL-taulun viesti schema (id primary key, kirjoittaja int, keskustelu int, teksti varchar, aikaleima timestamp)
@@ -29,7 +58,7 @@ public class KirjoitaServlet extends HttpServlet {
             String sql = "insert into viesti values (?, ?, ?, ?, ?)";
             PreparedStatement ps = yhteys.prepareStatement(sql);
             ps.setInt(1, 0); // Käytetään indeksiä nolla, jolloin SQL auto-increment hoitaa nimeämisen
-            HttpSession istunto = request.getSession(false);
+            istunto = request.getSession(false);
             String nimi = (String) istunto.getAttribute("nimi");
             int id = 0;
             try (Connection con = dataSource.getConnection()) {
@@ -59,5 +88,29 @@ public class KirjoitaServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    /*
+    Metodi luoUusiKeskustelu luo tietokantaan tauluun keskustelu uuden rivin käyttäen
+    SQL:n auto-increment ominaisuutta ja palauttaa uuden keskustelun id-tunnuksen
+    String-muotoisena.
+     */
+    private String luoUusiKeskustelu(String kategoriaId, String otsikko) {
+        String id =  null;
+        try (Connection yhteys = dataSource.getConnection()) {
+            String sql = "insert into keskustelu values(0, ?, ?)";
+            PreparedStatement ps = yhteys.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, otsikko);
+            ps.setString(2, kategoriaId);
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 }
