@@ -11,8 +11,15 @@
     <link rel="stylesheet" href="forumstyle.css">
 </head>
 <body>
+<nav class="navbar">
+    <ul>
+        <li><a href="badges.html">KIRJAUTUMINEN</a></li>
+        <li><input type="text" name="search" placeholder="Etsi.."></li>
+    </ul>
+    <br>
+</nav>
 <div class="banner">
-    <h1 class="maintitle">ACADEMY FORUM</h1>
+    <h1 class="maintitle" onclick="location.href='/'">ACADEMY FORUM</h1>
 </div>
 <a href="/">Etusivu</a> /
 <a href="/kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">

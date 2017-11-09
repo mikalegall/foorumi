@@ -11,11 +11,14 @@
     <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
 <body>
-<nav>
-    <h3 style="text-align: right">Kirjaudu</h3>
+<nav class="navbar">
+    <ul>
+        <li><a href="badges.html">KIRJAUTUMINEN</a></li>
+        <li><input type="text" name="search" placeholder="Etsi.."></li>
+    </ul>
     <br>
 </nav>
-<div class="banner">
+<div class="banner" onclick="location.href='/'">
     <h1 class="maintitle">ACADEMY FORUM</h1>
 </div>
 <blockquote>

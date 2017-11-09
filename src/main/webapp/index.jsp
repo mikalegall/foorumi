@@ -11,8 +11,11 @@
     <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
 <body>
-<nav>
-    <h3 style="text-align: right">Kirjaudu</h3>
+<nav class="navbar">
+    <ul>
+        <li><a href="badges.html" class="navbar">KIRJAUTUMINEN</a></li>
+        <li><input type="text" name="search" placeholder="Etsi.."></li>
+    </ul>
     <br>
 </nav>
 <div class="banner">
