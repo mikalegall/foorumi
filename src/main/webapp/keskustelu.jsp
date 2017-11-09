@@ -23,12 +23,16 @@
         ArrayList<Viesti> viestit = (ArrayList<Viesti>) request.getAttribute("viestit");
         for (Viesti viesti : viestit) {
             out.println("<div class='viesti' id='" + viesti.getId() + "'>");
-            out.println("<strong>" + viesti.getKirjoittaja() + "</strong> @ " + viesti.getAikaleima() + "<br>");
-            out.println("<br>" + viesti.getTeksti() + "<br>");
+            out.println("<strong>" + viesti.getKirjoittaja() + "</strong>");
+            out.println("<span class='aikaleima'> @ " + viesti.getAikaleima());
+
+            out.println("<br><br>" + viesti.getTeksti() + "<br>");
 
             if (istunto != null && istunto.getAttribute("rooli") != null && istunto.getAttribute("rooli").equals("moderaattori"))
-                out.println("<form method='post' action='/poista?viestiID=" + viesti.getId() + "'>" +
-                        "<input type='submit' class='poistaviesti' value='Poista' /></form>");
+                out.println("<form method='post' class='poistaviesti' action='/poista?viestiID=" + viesti.getId() + "'>" +
+                        "<input type='submit' value='Poista' /></form>");
+
+
 
             ///poista?viestiID=
             out.println("<br><hr></div>");

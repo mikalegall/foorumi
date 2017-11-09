@@ -102,6 +102,19 @@ p{
     font-family: 'Raleway', sans-serif;
 }
 
+.viesti {
+    line-height: 1.5em;
+}
+
+.poistaviesti {
+    display: inline-block;
+    float: right;
+}
+
+.aikaleima {
+    text-align: right;
+}
+
 .banner {
     background-image: url("https://argentdemo.files.wordpress.com/2015/05/cropped-macbook-336651_1920.jpg");
     height: 100px;
@@ -212,7 +225,7 @@ p{
     padding: 4.25em 0;
 }
 
-.rightDIV:hover{
+.rightDIV:hover {
     background: rgba(0, 0, 0, 0.5);
     background-image: url("https://images.pexels.com/photos/274192/pexels-photo-274192.jpeg?h=350&auto=compress&cs=tinysrgb");
     -webkit-transition: all 0.3s ease-in-out;
@@ -220,7 +233,8 @@ p{
     -o-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    padding: 4.25em 0;
+    padding: 4.25em 0em;
+}
 
 .bottom {
     background-color: #000000;
@@ -252,3 +266,4 @@ p{
     background: #474544;
     color: #F2F3EB;
 }
+
