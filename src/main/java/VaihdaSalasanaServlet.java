@@ -53,11 +53,13 @@ public class VaihdaSalasanaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='fi'>");
             out.println("<head>");
+            out.println("<link rel='stylesheet' type='text/css' href='forumstyle.css'>");
             out.println("<meta charset='utf-8'/>");
             out.println("<title>VaihdaSalasana</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Vaihda salasana</h1>");
+            out.println("<a href='/'>Takaisin etusivulle</a>");
+            out.println("<h1 align='center'>Vaihda salasana</h1>");
             if (istunto == null || istunto.getAttribute("nimi") == null) {
                 response.sendRedirect("/Kirjaudu");
             } else {
