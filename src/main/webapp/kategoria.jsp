@@ -27,7 +27,7 @@
 </div>
 
 <%
-    HttpSession istunto = request.getSession(false);
+    //HttpSession istunto = request.getSession(false);
     //String kayttajatunnus = (String) istunto.getAttribute("nimi");
     if (istunto == null || istunto.getAttribute("nimi") == null) {
         out.println("<p>Kirjaudu sisään aloittaaksesi uuden viestiketjun</p>");

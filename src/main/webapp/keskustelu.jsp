@@ -31,7 +31,7 @@
     %>
 </div>
 <%
-    HttpSession istunto = request.getSession(false);
+    //HttpSession istunto = request.getSession(false);
     if (istunto == null || istunto.getAttribute("nimi") == null) {
         out.println("<p>Kirjaudu sisään kirjoittaaksesi viestin</p>");
     } else {
