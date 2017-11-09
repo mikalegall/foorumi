@@ -69,6 +69,7 @@ public class KeskusteluServlet extends HttpServlet {
                 v.setTeksti(resultSet.getString("teksti"));
                 v.setKirjoittaja(resultSet.getString("kayttajatunnus"));
                 v.setId(resultSet.getString("viestiid"));
+                v.setAikaleima(resultSet.getString("aikaleima"));
                 viestit.add(v);
             }
 

@@ -11,14 +11,23 @@ public class Viesti {
     private String kirjoittaja;
     private String teksti;
     private String keskusteluId;
+    private String aikaleima;
 
-    public String getKeskusteluId() { return keskusteluId;}
+    public String getKeskusteluId() {
+        return keskusteluId;
+    }
 
-    public void setKeskusteluId(String keskusteluId) { this.keskusteluId = keskusteluId; }
+    public void setKeskusteluId(String keskusteluId) {
+        this.keskusteluId = keskusteluId;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
     public String getKirjoittaja() {
         return kirjoittaja;
@@ -34,6 +43,15 @@ public class Viesti {
 
     public void setTeksti(String teksti) {
         this.teksti = teksti;
+    }
+
+
+    public String getAikaleima() {
+        return aikaleima;
+    }
+
+    public void setAikaleima(String aikaleima) {
+        this.aikaleima = aikaleima;
     }
 
 }
