@@ -53,9 +53,10 @@ public class KategoriaServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        request.setAttribute("kategoriaid", kategoriaid);
         request.setAttribute("kategoria", kategoria);
         request.setAttribute("keskustelut", keskustelut);
-        request.getRequestDispatcher("kategoriat.jsp").forward(request, response);
+        request.getRequestDispatcher("kategoria.jsp").forward(request, response);
 
         writer.close();
 
