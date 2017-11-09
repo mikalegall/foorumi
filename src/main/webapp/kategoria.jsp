@@ -21,6 +21,8 @@
 <div class="banner" onclick="location.href='/'">
     <h1 class="maintitle">ACADEMY FORUM</h1>
 </div>
+<a href="/">Etusivu</a> /
+    <% out.print(request.getAttribute("kategoria")); %>
 <blockquote>
     <p style="text-align: center"><% out.println(request.getAttribute("kategoria")); %></p>
 </blockquote>

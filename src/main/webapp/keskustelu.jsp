@@ -23,7 +23,8 @@
 </div>
 <a href="/">Etusivu</a> /
 <a href="/kategoria?id=<% out.print(request.getAttribute("keskusteluKategoriaId")); %>">
-    <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a>
+    <% out.print(request.getAttribute("keskusteluKategoriaNimi")); %></a> /
+    <% out.print(request.getAttribute("keskusteluOtsikko")); %>
 <blockquote>
     <p style="text-align: center"><% out.print(request.getAttribute("keskusteluOtsikko")); %></p>
 </blockquote>

@@ -13,7 +13,7 @@ public class KirjauduUlosServlet extends HttpServlet {
         HttpSession istunto = request.getSession(false);
         if (istunto != null) {
             istunto.invalidate();
-            response.sendRedirect("/Kirjaudu");
+            response.sendRedirect("/kirjaudu");
         } else {
             response.sendRedirect("/index.html");
         }
