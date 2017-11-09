@@ -57,7 +57,6 @@ public class KirjauduServlet extends HttpServlet {
                 out.println("<p>Salasana: <input name='salasana' type='password'></p>");
                 out.println("<p><input type='submit' value='Kirjaudu'>");
                 out.println("</form>");
-                out.println("<a href='/'><button>Peruuta</button></a></p>");
                 out.println("</div>");
                 out.println("</body>");
                 out.println("</html>");
