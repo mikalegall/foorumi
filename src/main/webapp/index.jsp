@@ -11,16 +11,7 @@
     <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
 <body>
-<nav class="navbar">
-    <ul>
-        <li><a href="badges.html" class="navbar">KIRJAUTUMINEN</a></li>
-        <li><input type="text" name="search" placeholder="Etsi.."></li>
-    </ul>
-    <br>
-</nav>
-<div class="banner">
-    <h1 class="maintitle">ACADEMY FORUM</h1>
-</div>
+<%@ include file="header.jsp" %>
 <div class="stuff">
     <blockquote>
         <p style="text-align: center">Täällä voit keskustella Academyyn liittyvistä aiheista</p>

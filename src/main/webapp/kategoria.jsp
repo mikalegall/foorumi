@@ -11,16 +11,7 @@
     <link rel="stylesheet" type="text/css" href="forumstyle.css">
 </head>
 <body>
-<nav class="navbar">
-    <ul>
-        <li><a href="badges.html">KIRJAUTUMINEN</a></li>
-        <li><input type="text" name="search" placeholder="Etsi.."></li>
-    </ul>
-    <br>
-</nav>
-<div class="banner" onclick="location.href='/'">
-    <h1 class="maintitle">ACADEMY FORUM</h1>
-</div>
+<%@ include file="header.jsp" %>
 <a href="/">Etusivu</a> /
     <% out.print(request.getAttribute("kategoria")); %>
 <blockquote>
