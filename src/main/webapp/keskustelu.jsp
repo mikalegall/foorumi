@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="luokat.Viesti" %>
-<%
-%>
+
 <!doctype html>
 <html lang="fi">
 <head>

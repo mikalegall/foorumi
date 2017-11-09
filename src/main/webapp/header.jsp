@@ -4,7 +4,7 @@
         <%
             HttpSession istunto = request.getSession(false);
             if (istunto == null || istunto.getAttribute("nimi") == null) {
-                out.println("<li><a href='/kirjaudu?url=" + request.getRequestURI() + "'>KIRJAUDU</a></li>");
+                out.println("<li><a href='/kirjaudu'>KIRJAUDU</a></li>");
             } else if (istunto.getAttribute("rooli").equals("tavis")) {
                 out.println("<li><a href='/logout'>KIRJAUDU ULOS</a></li>");
                 out.println("<li><a href='/VaihdaSalasana'>VAIHDA SALASANA</a></li>");
