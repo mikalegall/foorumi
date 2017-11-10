@@ -57,7 +57,6 @@ public class KirjauduServlet extends HttpServlet {
                 out.println("<p>Salasana: <input name='salasana' type='password'></p>");
                 out.println("<p><input type='submit' value='Kirjaudu'>");
                 out.println("</form>");
-                out.println("<a href='/'><button>Peruuta</button></a></p>");
                 out.println("</div>");
                 out.println("</body>");
                 out.println("</html>");
@@ -77,7 +76,7 @@ public class KirjauduServlet extends HttpServlet {
             virhe = true;
             response.sendRedirect("KirjauduServlet");
         }
-        //istunto = request.getSession(false);
+        istunto = request.getSession(false);
 
         try (Connection con = ds.getConnection()) {
             String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ? AND salasana = ?";
