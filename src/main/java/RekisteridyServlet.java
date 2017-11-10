@@ -84,7 +84,7 @@ public class RekisteridyServlet extends HttpServlet {
             out.println("<a href='/'>Takaisin etusivulle</a>");
             out.println("<div>");
             out.println("<h1 align='center'>Rekisteröidy</h1>");
-            if (istunto == null) {
+            if (istunto == null || istunto.getAttribute("nimi") == null) {
                 if (tyhjä) {
                     out.println("<p>Käyttäjätunnus tai salasana ei saa olla tyhjä<p>");
                     tyhjä = false;

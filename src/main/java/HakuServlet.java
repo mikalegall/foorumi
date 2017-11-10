@@ -50,7 +50,7 @@ public class HakuServlet extends HttpServlet {
     10 merkkiä hakusanan jälkeen alkuperäisestä tekstistä.
      */
     private String korostaHakusanaTekstistä(String teksti, String hakusana) {
-        int hakusananAlkuIndeksi = teksti.indexOf(hakusana);
+        int hakusananAlkuIndeksi = teksti.toLowerCase().indexOf(hakusana.toLowerCase());
         if (hakusananAlkuIndeksi < 0) return null;
         int alkupiste = (hakusananAlkuIndeksi < 10) ? 0 : hakusananAlkuIndeksi - 10;
         int hakusananLoppuIndeksi = hakusananAlkuIndeksi + hakusana.length();
@@ -58,9 +58,9 @@ public class HakuServlet extends HttpServlet {
 
         StringBuilder retval = new StringBuilder();
         retval.append(teksti.substring(alkupiste, hakusananAlkuIndeksi));
-        retval.append("<strong>");
+        retval.append("<em>");
         retval.append(teksti.substring(hakusananAlkuIndeksi, hakusananLoppuIndeksi));
-        retval.append("</strong>");
+        retval.append("</em>");
         retval.append(teksti.substring(hakusananLoppuIndeksi, loppupiste));
         return retval.toString();
 
