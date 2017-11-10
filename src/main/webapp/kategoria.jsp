@@ -22,6 +22,12 @@
         ArrayList<Keskustelu> keskustelut = (ArrayList<Keskustelu>) request.getAttribute("keskustelut");
         for (Keskustelu keskustelu : keskustelut) {
             out.println("<a href='keskustelu?id=" + keskustelu.getId() + "'>" + keskustelu.getOtsikko() + "</a><br>");
+
+
+            if (istunto != null && istunto.getAttribute("rooli") != null && istunto.getAttribute("rooli").equals("moderaattori"))
+                out.println("<form method='post' class='poistaviesti' action='/poista?viestiID=" + keskustelu.getId() + "'>" +
+                        "<input type='submit' value='Poista' /></form>");
+
         }
     %>
 </div>

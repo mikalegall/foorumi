@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
     <Resource name="jdbc/foorumi" auth="Container" type="javax.sql.DataSource" maxTotal="100" maxIdle="30"
-              maxWaitMillis="10000" username="sql11203405" password="Llgr3M8xZW" driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://sql11.freemysqlhosting.net/sql11203405"/>
+              maxWaitMillis="10000" username="root" password="jarommiapullo" driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/foorumi"/>
 </Context>
