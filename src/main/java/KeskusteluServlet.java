@@ -92,16 +92,6 @@ public class KeskusteluServlet extends HttpServlet {
             keskusteluKategoriaNimi = resultSet.getString("kategorianimi");
             keskusteluKategoriaId = resultSet.getString("kategoriaid");
 
-            /*
-            Debuggaustarkoituksessa olevaa printtausta
-
-            System.out.println("\n\nAsetetaan muuttujat");
-            System.out.println(keskusteluOtsikko);
-            System.out.println(keskusteluKategoriaNimi);
-            System.out.println(keskusteluKategoriaId);
-            System.out.println("###################");
-            */
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

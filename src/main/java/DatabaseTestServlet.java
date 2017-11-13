@@ -14,7 +14,7 @@ import java.sql.*;
  */
 @WebServlet(name = "DatabaseTestServlet", urlPatterns = "/databasetest")
 public class DatabaseTestServlet extends HttpServlet {
-    @Resource(name ="jdbc/foorumi")
+    @Resource(name = "jdbc/foorumi")
     DataSource dataSource;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

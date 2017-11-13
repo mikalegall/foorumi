@@ -25,11 +25,7 @@ public class RekisteridyServlet extends HttpServlet {
         String nimi = request.getParameter("nimi");
         String salasana1 = request.getParameter("salasana");
         String salasana2 = request.getParameter("salasana2");
-       /*
-        if (nimi == null) {
-            response.sendRedirect("Rekisteridy");
-        }
-        */
+
         try (Connection con = ds.getConnection()) {
             String sql = "SELECT * FROM kayttaja WHERE kayttajatunnus = ?";
             PreparedStatement lause = con.prepareStatement(sql);

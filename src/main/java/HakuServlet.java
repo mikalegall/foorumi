@@ -35,8 +35,6 @@ public class HakuServlet extends HttpServlet {
             }
         }
 
-        //debugPrint(hakutulokset, request, response);
-
         request.setAttribute("haku", hakusanat);
         request.setAttribute("hakutulokset", hakutulokset);
         request.getRequestDispatcher("hakutulokset.jsp").forward(request, response);
